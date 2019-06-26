@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation.xml"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.itg.githubapp.ui.fragments.home.HomeFragment"
+        android:label="@string/repos"
+        tools:layout="@layout/home_fragment" />
+    <fragment
+        android:id="@+id/userDetailsFragment"
+        android:name="com.itg.githubapp.ui.fragments.userdetails.UserDetailsFragment"
+        android:label="User"
+        tools:layout="@layout/user_details_fragment" />
+    <fragment
+        android:id="@+id/repoDetailsFragment"
+        android:name="com.itg.githubapp.ui.fragments.repodetails.RepoDetailsFragment"
+        android:label="repo"
+        tools:layout="@layout/repo_details_fragment" />
+</navigation>
