@@ -1,9 +1,11 @@
 package com.itg.githubapp.data.network.response
 
+import android.provider.ContactsContract
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
+import java.security.Permissions
 
-data class Repository(
+data class RepoDetails(
     @SerializedName("id") val id: Int,
     @SerializedName("node_id") val node_id: String,
     @SerializedName("name") val name: String,
@@ -50,5 +52,38 @@ data class Repository(
     @SerializedName("subscription_url") val subscription_url: String,
     @SerializedName("tags_url") val tags_url: String,
     @SerializedName("teams_url") val teams_url: String,
-    @SerializedName("trees_url") val trees_url: String
-) : Serializable
+    @SerializedName("trees_url") val trees_url: String,
+    @SerializedName("clone_url") val clone_url: String,
+    @SerializedName("mirror_url") val mirror_url: String,
+    @SerializedName("hooks_url") val hooks_url: String,
+    @SerializedName("svn_url") val svn_url: String,
+    @SerializedName("homepage") val homepage: String,
+    @SerializedName("language") val language: String,
+    @SerializedName("forks_count") val forks_count: Int,
+    @SerializedName("stargazers_count") val stargazers_count: Int,
+    @SerializedName("watchers_count") val watchers_count: Int,
+    @SerializedName("size") val size: Int,
+    @SerializedName("default_branch") val default_branch: String,
+    @SerializedName("open_issues_count") val open_issues_count: Int,
+    @SerializedName("topics") val topics: List<String>,
+    @SerializedName("has_issues") val has_issues: Boolean,
+    @SerializedName("has_projects") val has_projects: Boolean,
+    @SerializedName("has_wiki") val has_wiki: Boolean,
+    @SerializedName("has_pages") val has_pages: Boolean,
+    @SerializedName("has_downloads") val has_downloads: Boolean,
+    @SerializedName("archived") val archived: Boolean,
+    @SerializedName("disabled") val disabled: Boolean,
+    @SerializedName("pushed_at") val pushed_at: String,
+    @SerializedName("created_at") val created_at: String,
+    @SerializedName("updated_at") val updated_at: String,
+    @SerializedName("permissions") val permissions: Permissions,
+    @SerializedName("allow_rebase_merge") val allow_rebase_merge: Boolean,
+    @SerializedName("allow_squash_merge") val allow_squash_merge: Boolean,
+    @SerializedName("allow_merge_commit") val allow_merge_commit: Boolean,
+    @SerializedName("subscribers_count") val subscribers_count: Int,
+    @SerializedName("network_count") val network_count: Int,
+    @SerializedName("license") val license: License,
+    @SerializedName("organization") val organization: ContactsContract.CommonDataKinds.Organization,
+    @SerializedName("parent") val parent: Parent,
+    @SerializedName("source") val source: Source
+):Serializable

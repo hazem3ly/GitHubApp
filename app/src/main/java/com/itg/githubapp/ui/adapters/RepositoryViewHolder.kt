@@ -1,4 +1,4 @@
-package com.itg.githubapp.ui.adapters.adapter
+package com.itg.githubapp.ui.adapters
 
 import android.view.View
 import android.widget.ImageView
@@ -16,13 +16,17 @@ class RepositoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val repo_owner: TextView = itemView.repo_owner
     val repo_name: TextView = itemView.repo_name
 
-    fun bind(item: Repository, onItemClicked: (repo: Repository) -> Unit) {
+    fun bind(item: Repository, onItemClicked: (repo: Repository) -> Unit, onIconClicked: (repo: Repository) -> Unit) {
         itemView.setOnClickListener {
             onItemClicked(item)
         }
         Picasso.get().load(item.owner.avatar_url).into(owner_image)
         repo_name.text = item.name
         repo_owner.text = item.owner.login
+
+        owner_image.setOnClickListener {
+            onIconClicked(item)
+        }
 
     }
 

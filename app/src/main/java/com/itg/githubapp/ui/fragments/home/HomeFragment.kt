@@ -7,12 +7,14 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.itg.githubapp.R
 import com.itg.githubapp.data.network.response.Repository
 import com.itg.githubapp.extensions.loadSavedList
 import com.itg.githubapp.extensions.saveToSpAndClearIfFive
-import com.itg.githubapp.ui.adapters.adapter.RepositoryListAdapter
+import com.itg.githubapp.ui.adapters.PaginationScrollListener
+import com.itg.githubapp.ui.adapters.RepositoryListAdapter
 import com.itg.githubapp.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.coroutines.launch
@@ -103,14 +105,16 @@ class HomeFragment : ScopedFragment(), KodeinAware {
 
     private fun initRecycler() {
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        reposAdapter = RepositoryListAdapter {
-
-        }
+        reposAdapter = RepositoryListAdapter({
+            openRepoDetails(it)
+        }, {
+            openUserDetails(it)
+        })
         repos_recycler?.setHasFixedSize(true)
         repos_recycler?.layoutManager = layoutManager
         repos_recycler?.adapter = reposAdapter
         repos_recycler?.addOnScrollListener(object :
-            RepositoryListAdapter.PaginationScrollListener(layoutManager) {
+            PaginationScrollListener(layoutManager) {
             override fun isLoading(): Boolean {
                 return isLoading
             }
@@ -124,6 +128,19 @@ class HomeFragment : ScopedFragment(), KodeinAware {
                 }
             }
         })
+    }
+
+    private fun openUserDetails(repository: Repository) {
+        val action =
+            HomeFragmentDirections.actionHomeFragmentToUserDetailsFragment(repository)
+        view?.findNavController()?.navigate(action)
+    }
+
+    private fun openRepoDetails(repository: Repository) {
+        val action =
+            HomeFragmentDirections.actionHomeFragmentToRepoDetailsFragment()
+        action.repository = repository
+        view?.findNavController()?.navigate(action)
     }
 
 

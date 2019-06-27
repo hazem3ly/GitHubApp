@@ -5,9 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.userdetails.UserDetailsFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/user_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <include
+        android:id="@+id/progress"
+        layout="@layout/loading_progress"
+        android:visibility="gone" />
 
 </FrameLayout>
